@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Anniversary Bhaiya & Bhabhi 💕</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body{
+    overflow:hidden;
+    background: linear-gradient(135deg,#ff9ec4,#d9a7ff,#fff5a8);
+}
+
+/* Pages */
+.page{
+    width:100%;
+    height:100vh;
+    display:none;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    text-align:center;
+    padding:20px;
+    color:white;
+    animation: fadeIn 1.5s ease;
+}
+
+.active{
+    display:flex;
+}
+
+h1{
+    font-size:40px;
+    margin-bottom:20px;
+    text-shadow:2px 2px 10px rgba(0,0,0,0.3);
+}
+
+p{
+    font-size:20px;
+    margin-bottom:30px;
+}
+
+/* Button */
+button{
+    padding:12px 30px;
+    border:none;
+    border-radius:30px;
+    font-size:18px;
+    background:gold;
+    color:#333;
+    cursor:pointer;
+    transition:0.4s;
+    box-shadow:0 0 15px rgba(255,215,0,0.6);
+}
+
+button:hover{
+    transform:scale(1.1);
+    background:#fff;
+}
+
+/* Floating Hearts */
+.heart{
+    position:absolute;
+    bottom:-20px;
+    color:white;
+    font-size:20px;
+    animation: float 8s linear infinite;
+}
+
+@keyframes float{
+    0%{transform:translateY(0) scale(1); opacity:1;}
+    100%{transform:translateY(-100vh) scale(1.5); opacity:0;}
+}
+
+/* Fade Animation */
+@keyframes fadeIn{
+    from{opacity:0;}
+    to{opacity:1;}
+}
+
+/* Photo Style */
+.photo{
+    width:280px;
+    border-radius:20px;
+    box-shadow:0 0 25px rgba(255,255,255,0.8);
+    animation: glow 2s infinite alternate;
+}
+
+@keyframes glow{
+    from{transform:scale(1);}
+    to{transform:scale(1.05);}
+}
+
+/* Quiz */
+.option{
+    background:white;
+    color:#333;
+    padding:10px 20px;
+    margin:10px;
+    border-radius:20px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.option:hover{
+    background:gold;
+}
+
+.result{
+    margin-top:15px;
+    font-weight:bold;
+}
+
+@media(max-width:600px){
+    h1{font-size:28px;}
+    p{font-size:16px;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- Floating Hearts Script -->
+<script>
+function createHearts(){
+    const heart=document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML="💖";
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.fontSize=Math.random()*20+10+"px";
+    heart.style.animationDuration=Math.random()*5+5+"s";
+    document.body.appendChild(heart);
+
+    setTimeout(()=>{heart.remove();},8000);
+}
+setInterval(createHearts,500);
+</script>
+
+<!-- PAGE 1 -->
+<div class="page active" id="page1">
+    <h1>💞 Happy Anniversary Bhaiya & Bhabhi 💞</h1>
+    <p>May your love grow stronger, brighter and more magical every single day ✨<br>
+    You both are the most beautiful couple ❤️</p>
+    <button onclick="nextPage(2)">Next ➜</button>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page" id="page2">
+    <h1>Beautiful Memories 📸</h1>
+    <img src="photo.jpeg" class="photo">
+    <p>Your love shines brighter than the stars 🌟</p>
+    <button onclick="nextPage(3)">Next ➜</button>
+</div>
+
+<!-- PAGE 3 QUIZ -->
+<div class="page" id="page3">
+    <h1>Love Quiz Game 💘</h1>
+    <p>What is their favorite color?</p>
+    <div class="option" onclick="checkAnswer(this,'red')">Red</div>
+    <div class="option" onclick="checkAnswer(this,'wrong')">Blue</div>
+    <div class="option" onclick="checkAnswer(this,'wrong')">Green</div>
+
+    <div class="result" id="result"></div>
+
+    <button onclick="nextPage(4)">Next ➜</button>
+</div>
+
+<!-- PAGE 4 -->
+<div class="page" id="page4">
+    <h1>Forever & Always 💕</h1>
+    <p>
+    Dear Bhaiya & Bhabhi,<br><br>
+    Your love story is full of laughter, care, understanding and endless happiness.<br>
+    May your journey together be filled with joy, success and beautiful memories.<br><br>
+    Stay blessed, stay magical, stay in love forever 💖✨
+    </p>
+</div>
+
+<script>
+function nextPage(pageNumber){
+    document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+    document.getElementById("page"+pageNumber).classList.add("active");
+}
+
+function checkAnswer(element,answer){
+    const result=document.getElementById("result");
+    if(answer==="red"){
+        result.innerHTML="Correct! ❤️ They love Red!";
+        result.style.color="yellow";
+    }else{
+        result.innerHTML="Oops! Try Again 💕";
+        result.style.color="white";
+    }
+}
+</script>
+
+</body>
+</html>
